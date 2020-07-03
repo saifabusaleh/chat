@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   public onSubmit(event: any): void {
     const username = event.target.user.value;
     if (!!username) {
-      // do login
+      // do join
       sessionStorage.setItem('user', username);
       this.router.navigate([ '/rooms']);
     }
