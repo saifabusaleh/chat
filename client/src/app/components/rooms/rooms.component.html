@@ -1,1 +1,9 @@
-<p>rooms works!</p>
+<div class="rooms-container">
+
+    <div class="rooms-list">
+        <h3 class="heading">Rooms:</h3>
+        <div>
+            <a href="#" class="room" *ngFor="let room of rooms$ | async">{{room.name}}</a>
+        </div>
+    </div>
+</div>

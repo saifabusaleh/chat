@@ -1,4 +1,5 @@
 import { Component, OnInit, ValueProvider } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,15 +10,18 @@ export class LoginComponent implements OnInit {
 
   name: string;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
 
-  public onSubmit(event: any): ValueProvider {
-    return event.target.user.value;
+  public onSubmit(event: any): void {
+    const username = event.target.user.value;
+    if (!!username) {
+      // do login
+      sessionStorage.setItem('user', username);
+      this.router.navigate([ '/rooms']);
+    }
   }
-
-
 }

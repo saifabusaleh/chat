@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { HttpService } from '../../services/http.service';
+import { Observable } from 'rxjs/internal/Observable';
 @Component({
   selector: 'app-rooms',
   templateUrl: './rooms.component.html',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RoomsComponent implements OnInit {
 
-  constructor() { }
+  rooms$: Observable<any>;
+
+  constructor(private httpService: HttpService) { }
 
   ngOnInit(): void {
+    this.rooms$ = this.httpService.getRooms();
   }
 
 }
