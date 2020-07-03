@@ -8,13 +8,15 @@ import { LoginComponent } from './components/login/login.component';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './components/app/app.component';
 import { HttpClientModule } from '@angular/common/http';
+import { RoomComponent } from './components/room/room.component';
 
 @NgModule({
   declarations: [
     RoomsComponent,
     ChatComponent,
     LoginComponent,
-    AppComponent
+    AppComponent,
+    RoomComponent
   ],
   imports: [
     BrowserModule,

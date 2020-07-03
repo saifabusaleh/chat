@@ -10,9 +10,15 @@ export class HttpService {
 
   constructor(private http: HttpClient) { }
 
+  // users
 
+  public join(username: string): Observable<any> {
+    const reqUrl = `${this.BASE_API_URL}/register`;
+    return this.http.post(reqUrl, {username});
+  }
+  // rooms
   public getRooms(): Observable<any> {
-   const reqUrl = `${this.BASE_API_URL}/rooms`;
-   return this.http.get(reqUrl);
+    const reqUrl = `${this.BASE_API_URL}/rooms`;
+    return this.http.get(reqUrl);
   }
 }

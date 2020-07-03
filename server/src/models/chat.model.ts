@@ -4,7 +4,7 @@ import { QueryResult } from 'pg';
 
 // Rooms
 export const getRooms = async () => {
-    return runQuery('SELECT name FROM ROOM;');
+    return runQuery('SELECT room_id, name FROM ROOM;');
 }
 
 export const createRoom = async (name: string) => {

@@ -10,6 +10,8 @@ export class RoomsComponent implements OnInit {
 
   rooms$: Observable<any>;
 
+  currentUser = JSON.parse(sessionStorage.getItem('user')).username;
+
   constructor(private httpService: HttpService) { }
 
   ngOnInit(): void {

@@ -1,9 +1,9 @@
 <div class="rooms-container">
-
+<!-- Welcome {{currentUser}} -->
     <div class="rooms-list">
-        <h3 class="heading">Rooms:</h3>
+        <h3 class="heading">Rooms List:</h3>
         <div>
-            <a href="#" class="room" *ngFor="let room of rooms$ | async">{{room.name}}</a>
+            <a [routerLink]="['/room', room.room_id]" class="room" *ngFor="let room of rooms$ | async">{{room.name}}</a>
         </div>
     </div>
 </div>
