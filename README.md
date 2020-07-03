@@ -1,7 +1,11 @@
 # Chat Application
 
 ## Getting started
-Clone the repository
-git clone https://github.com/saifabusaleh/chat.git
-cd chat
-npm install
+
+Open cmd and run:
+
+ ``$git clone https://github.com/saifabusaleh/chat.git``
+
+``$cd chat``
+
+``$npm install``
