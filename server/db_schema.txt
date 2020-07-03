@@ -1,0 +1,17 @@
+CREATE TABLE room (
+  room_id serial primary key,
+  name VARCHAR(50)
+);
+
+CREATE TABLE person (
+  person_id serial primary key,
+  name VARCHAR(50)
+);
+
+CREATE TABLE message (
+  message_id serial primary key,
+  message_text VARCHAR(50),
+  posted_datetime timestamp with time zone NOT NULL DEFAULT current_timestamp,
+  room_id integer REFERENCES room (room_id),
+  person_id integer REFERENCES person (person_id)
+);

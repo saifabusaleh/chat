@@ -1,6 +1,6 @@
 import {Client, QueryResult} from 'pg';
-import * as dbUtil from './../utils/dbUtil';
-import logger = require('./../utils/logger');
+import * as dbUtil from '../utils/dbUtil';
+import logger = require('../utils/logger');
 const transactionSuccess : string = 'transaction success';
 
 /* 

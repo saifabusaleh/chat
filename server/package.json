@@ -1,13 +1,16 @@
 {
-  "name": "boilerplate-nodejs-typescript-express-postgres",
-  "description": "example of node typescript express postgres project",
+  "name": "chat-nodejs-pgsql-server",
+  "description": "chat-nodejs-pgsql-server",
   "version": "1.0.4",
-  "author": "Erik Mangor",
+  "author": "Saif Abu saleh",
+  "private": "true",
   "dependencies": {
     "async": "2.6.1",
     "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
+    "http-status": "^1.4.2",
     "pg": "^7.11.0",
     "winston": "3.1.0"
   },
@@ -26,12 +29,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/emangor/boilerplate-typescript-express-postgres.git"
+    "url": "https://github.com/saifabusaleh/chat.git"
   },
   "license": "MIT",
   "scripts": {
-    "start": "node app.js",
-    "dev": "nodemon src/app.ts",
+    "start": "nodemon src/app.ts",
     "watch": "node_modules/.bin/tsc -w -p tsconfig.json",
     "build": "node_modules/.bin/tsc -p tsconfig.json"
   }

@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import logger = require('./../utils/logger');
-import * as sampleModel from './../models/model-sample';
+import * as sampleModel from '../models/sample.model';
 import { QueryResult } from 'pg';
 
 // sample controller
