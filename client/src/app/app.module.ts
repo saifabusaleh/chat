@@ -6,12 +6,14 @@ import { RoomsComponent } from './components/rooms/rooms.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { LoginComponent } from './components/login/login.component';
 import { FormsModule } from '@angular/forms';
+import { AppComponent } from './components/app/app.component';
 
 @NgModule({
   declarations: [
     RoomsComponent,
     ChatComponent,
-    LoginComponent
+    LoginComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -19,6 +21,6 @@ import { FormsModule } from '@angular/forms';
     FormsModule
   ],
   providers: [],
-  bootstrap: [LoginComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
