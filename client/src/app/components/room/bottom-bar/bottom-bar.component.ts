@@ -13,7 +13,10 @@ export class BottomBarComponent implements OnInit {
   }
 
   onSubmit(event: any): void {
-    console.log(event.target.value.text);
+    const text =  event.target[0].value;
+    if (!!text) {
+      // send
+    }
   }
 
 }
