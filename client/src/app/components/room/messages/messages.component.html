@@ -1,8 +1,9 @@
 <div class="messages-container">
     <div *ngFor="let msg of messages$ | async" class="messageContainer justifyStart">
-        <div class="messageBox backgroundLight">
-          <p class="messageText colorDark">{{msg.message_text}}</p>
+        <div class="messageBox backgroundDark">
+            <p class="sentText">{{msg.name}}</p>
+          <p class="messageText colorWhite">{{msg.message_text}}</p>
         </div>
-        <p class="sentText pl-10 ">{{msg.name}}</p>
+        
       </div>
 </div>

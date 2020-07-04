@@ -3,25 +3,30 @@
   }
   
   .input {
-    border: none;
-    border-top: 2px solid #D3D3D3;
-    border-radius: 0;
+    border-radius: 0.25em;
     padding: 5%;
     width: 80%;
     font-size: 1.2em;
+    background-color: #282c34;
+    border: 1px solid #fff;
+    color: #fff;
   }
   
   input:focus, textarea:focus, select:focus{
-    outline: none;
+    // border-color: rgba(229, 103, 23, 0.8);
+    // box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075) inset, 0 0 8px rgba(229, 103, 23, 0.6);
+    // outline: 0 none;
   }
   
   .sendButton {
-    color: #fff !important;
     text-transform: uppercase;
     text-decoration: none;
-    background: #2979FF;
+    background-color: #282c34;
     padding: 20px;
     display: inline-block;
     border: none;
     width: 20%;
+    cursor: pointer;
+    color: #bdc7e6;
+    font-size: 1.25rem;
   }

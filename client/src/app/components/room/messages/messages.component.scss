@@ -3,6 +3,7 @@
     overflow: auto;
     flex: auto;
     height: inherit;
+    background-color: #282c34;
 
     .messageBox {
         background: #F3F3F3;
@@ -19,6 +20,7 @@
         float: left;
         font-size: 1.1em;
         word-wrap: break-word;
+        margin-top: 0;
       }
       
       .messageText img {
@@ -36,7 +38,7 @@
         display: flex;
         align-items: center;
         font-family: Helvetica;
-        color: #828282;
+        color: white;
         letter-spacing: 0.3px;
       }
       
@@ -66,6 +68,11 @@
       
       .backgroundBlue {
         background: #2979FF;
+      }
+
+
+      .backgroundDark {
+        background: rgba(0,0,0,0.25);
       }
       
       .backgroundLight {
