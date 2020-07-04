@@ -25,6 +25,11 @@ export class HttpService {
     return this.http.get(reqUrl);
   }
 
+  public createRoom(roomName: string): Observable<any> {
+    const reqUrl = `${this.BASE_API_URL}/createRoom`;
+    return this.http.post(reqUrl, {roomName});
+  }
+
 
   // messages
   public getPreviousMessages(roomId: number): Observable<any> {
