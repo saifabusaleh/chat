@@ -3,30 +3,9 @@ import * as socketIo from 'socket.io';
 import Users, { User } from './users';
 import logger = require('./utils/logger');
 import { QueryResult } from 'pg';
+import { ChatEvent } from './enums';
+import { ClientToServerChatMessage, ServerToClientChatMessage, JoinRoom } from './types';
 
-export enum ChatEvent {
-    CONNECT = 'connect',
-    DISCONNECT = 'disconnect',
-    MESSAGE = 'message',
-    SEND_MESSAGE = 'sendMessage',
-    JOIN_ROOM = 'join_room'
-}
-
-export interface JoinRoom {
-    room: string;
-    username: string;
-}
-
-export interface ClientToServerChatMessage {
-    text: string,
-    roomId: number,
-    personId: number
-}
-
-export interface ServerToClientChatMessage {
-    name: string,
-    message_text: string
-}
 export class ioService {
 
     private io: any;

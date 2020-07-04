@@ -40,17 +40,6 @@ export const getMessages = async (req: Request, res: Response) => {
     }
 }
 
-export const sendMessage = async (req: Request, res: Response) => {
-    let result : QueryResult;
-    try {
-        result = await chatModel.sendMessage(req.body.text, req.body.roomId, req.body.personId);
-        res.status(httpStatus.OK).json(result.rows);
-    } catch (error) {
-        logger.error(`sendMessage error: ${error.message}`);
-        res.status(httpStatus.INTERNAL_SERVER_ERROR).json({status:'error', message: error.message, statusCode: httpStatus.INTERNAL_SERVER_ERROR});
-    }
-}
-
 //User
 
 export const register = async (req: Request, res: Response) => {
