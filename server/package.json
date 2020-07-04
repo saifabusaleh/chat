@@ -36,8 +36,9 @@
   },
   "license": "MIT",
   "scripts": {
-    "start": "nodemon src/app.ts",
+    "start": "nodemon src/server.ts",
     "watch": "node_modules/.bin/tsc -w -p tsconfig.json",
-    "build": "node_modules/.bin/tsc -p tsconfig.json"
+    "build": "node_modules/.bin/tsc -p tsconfig.json",
+    "prod": "tsc && node ./build/server.js"
   }
 }

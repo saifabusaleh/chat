@@ -21,7 +21,7 @@ export const healthcheckDb = async (req: Request, res: Response) => {
         res.status(httpStatus.OK).json(result.rows);
     } catch (error) {
         logger.error(`getTime error: ${error.message}`);
-        res.status(httpStatus.INTERNAL_SERVER_ERROR).json({status:'error', message: error.message, statusCode: 500});
+        res.status(httpStatus.INTERNAL_SERVER_ERROR).json({status:'error', message: error.message, statusCode: httpStatus.INTERNAL_SERVER_ERROR});
     }
     
 }

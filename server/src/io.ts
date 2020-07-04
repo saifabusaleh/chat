@@ -32,7 +32,7 @@ export class ioService {
     private io: any;
     private users: Users;
     constructor(server: any) {
-        this.io = socketIo(server, { origins: '*:*' });
+        this.io = socketIo(server);
         this.users = new Users();
     }
 
@@ -54,18 +54,17 @@ export class ioService {
                 // callback();
             });
 
-            socket.on(ChatEvent.JOIN_ROOM, (m: JoinRoom) => {
-                const name = m.username;
-                const roomName = m.room;
-                const user: User = this.users.addUser({ id: socket.id, name, room: roomName });
+            socket.on(ChatEvent.JOIN_ROOM, (joinedRoom: JoinRoom) => {
+                const username = joinedRoom.username;
+                const roomName = joinedRoom.room;
+                const user: User = this.users.addUser({ id: socket.id, name: username, room: roomName });
 
                 if (user) {
                     const toClientMsg: ServerToClientChatMessage = { name: 'admin', message_text: `${user.name}, welcome to room ${user.room}.` };
 
                     socket.emit(ChatEvent.MESSAGE, toClientMsg);
                     socket.join(user.room);
-                    logger.info(`user ${m.username} joined room ${m.room}`)
-
+                    logger.info(`user ${joinedRoom.username} joined room ${joinedRoom.room}`)
                     this.io.to(user.room).emit('roomData', { room: user.room, users: this.users.getUsersInRoom(user.room) });
                 }
 
@@ -77,7 +76,6 @@ export class ioService {
 
                 if (user) {
                     const toClientMsg: ServerToClientChatMessage = { name: 'admin', message_text: `${user.name} has left.` };
-
                     this.io.to(user.room).emit('message', toClientMsg);
                     this.io.to(user.room).emit('roomData', { room: user.room, users: this.users.getUsersInRoom(user.room) });
                 }

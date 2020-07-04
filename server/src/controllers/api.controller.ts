@@ -12,7 +12,7 @@ export const getRooms = async (req: Request, res: Response) => {
         res.status(httpStatus.OK).json(result.rows);
     } catch (error) {
         logger.error(`getRooms error: ${error.message}`);
-        res.status(httpStatus.INTERNAL_SERVER_ERROR).json({status:'error', message: error.message, statusCode: 500});
+        res.status(httpStatus.INTERNAL_SERVER_ERROR).json({status:'error', message: error.message, statusCode: httpStatus.INTERNAL_SERVER_ERROR});
     }
 }
 
@@ -23,7 +23,7 @@ export const createRoom = async (req: Request, res: Response) => {
         res.status(httpStatus.CREATED).json(result.rows);
     } catch (error) {
         logger.error(`createRoom error: ${error.message}`);
-        res.status(httpStatus.INTERNAL_SERVER_ERROR).json({status:'error', message: error.message, statusCode: 500});
+        res.status(httpStatus.INTERNAL_SERVER_ERROR).json({status:'error', message: error.message, statusCode: httpStatus.INTERNAL_SERVER_ERROR});
     }
 }
 
@@ -36,7 +36,7 @@ export const getMessages = async (req: Request, res: Response) => {
         res.status(httpStatus.OK).json(result.rows);
     } catch (error) {
         logger.error(`getMessages error: ${error.message}`);
-        res.status(httpStatus.INTERNAL_SERVER_ERROR).json({status:'error', message: error.message, statusCode: 500});
+        res.status(httpStatus.INTERNAL_SERVER_ERROR).json({status:'error', message: error.message, statusCode: httpStatus.INTERNAL_SERVER_ERROR});
     }
 }
 
@@ -47,7 +47,7 @@ export const sendMessage = async (req: Request, res: Response) => {
         res.status(httpStatus.OK).json(result.rows);
     } catch (error) {
         logger.error(`sendMessage error: ${error.message}`);
-        res.status(httpStatus.INTERNAL_SERVER_ERROR).json({status:'error', message: error.message, statusCode: 500});
+        res.status(httpStatus.INTERNAL_SERVER_ERROR).json({status:'error', message: error.message, statusCode: httpStatus.INTERNAL_SERVER_ERROR});
     }
 }
 
@@ -60,6 +60,6 @@ export const register = async (req: Request, res: Response) => {
         res.status(httpStatus.CREATED).json(result.rows);
     } catch (error) {
         logger.error(`register error: ${error.message}`);
-        res.status(httpStatus.INTERNAL_SERVER_ERROR).json({status:'error', message: error.message, statusCode: 500});
+        res.status(httpStatus.INTERNAL_SERVER_ERROR).json({status:'error', message: error.message, statusCode: httpStatus.INTERNAL_SERVER_ERROR});
     }
 }
