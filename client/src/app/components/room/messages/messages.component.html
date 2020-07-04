@@ -1,1 +1,5 @@
-<div class="messages-container"></div>
+<div class="messages-container">
+    <ul>
+        <li *ngFor="let msg of messages$ | async">{{msg.message_text}}</li>
+    </ul>
+</div>

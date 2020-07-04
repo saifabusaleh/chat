@@ -21,4 +21,11 @@ export class HttpService {
     const reqUrl = `${this.BASE_API_URL}/rooms`;
     return this.http.get(reqUrl);
   }
+
+
+  // messages
+  public getMessages(roomId: number): Observable<any> {
+    const reqUrl = `${this.BASE_API_URL}/messages?roomId=${roomId}`;
+    return this.http.get(reqUrl);
+  }
 }
