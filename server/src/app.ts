@@ -8,26 +8,25 @@ import healthcheckRouter from './routes/healthcheck.route';
 import apiRouter from './routes/api.route';
 import {ioService } from './io';
 import { createServer, Server } from 'http';
+import * as cors from "cors";
 
-const corsOptions = {
-    origin: 'http://localhost',
-    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-  }
-const cors = require('cors')
 //create express app
 const app: express.Express = express();
-app.use(cors(corsOptions))
-// app.options('*', cors());
+app.use(cors({
+    origin: 'http://localhost:4200',
+    credentials: true
+  }))
 app.use(bodyParser.json());
 app.use('/healthcheck', healthcheckRouter);
 app.use('/api', apiRouter);
 
+const server: Server = createServer(app);
+
+const io: ioService = new ioService(server);
+io.initalize();
 
 
-app.listen(config.port, function () {
+server.listen(config.port, function () {
     logger.info(`server listening on port: ${config.port}`);
 });
 
-const server: Server = createServer(app);
-const io: ioService = new ioService(server);
-io.initalize();
