@@ -5,7 +5,7 @@ router.get('/rooms', apiController.getRooms);
 router.post('/createRoom', apiController.createRoom);
 
 
-router.get('/messsages', apiController.getMessages);
+router.get('/messages', apiController.getMessages);
 router.post('/sendMessage', apiController.sendMessage);
 
 router.post('/register', apiController.register);
