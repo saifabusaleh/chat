@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
+
+import * as io from 'socket.io-client';
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -8,7 +12,11 @@ export class HttpService {
 
   readonly BASE_API_URL = 'http://localhost:3333/api';
 
-  constructor(private http: HttpClient) { }
+  private socket;
+
+  constructor(private http: HttpClient) {
+    this.socket = io('http://localhost:3333', { transport : ['websocket'] });
+  }
 
   // users
 
