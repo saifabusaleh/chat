@@ -1,9 +1,14 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpService } from '@services/http.service';
-import { SocketIoService, Message } from '@services/socket-io.service';
-import { Observable } from 'rxjs/internal/Observable';
+import { SocketIoService, JoinRoom } from '@services/socket-io.service';
 import { Subscription } from 'rxjs';
+
+export interface ChatMessage {
+  text: string;
+  roomId: number;
+  personId: number;
+}
 
 @Component({
   selector: 'app-room',
@@ -33,7 +38,7 @@ export class RoomComponent implements OnInit, OnDestroy {
     this.roomName = this.route.snapshot.paramMap.get('name');
 
 
-    const msg: Message = { name: JSON.parse(sessionStorage.getItem('user')).username, room: this.roomName };
+    const msg: JoinRoom = { username: JSON.parse(sessionStorage.getItem('user')).username, room: this.roomName };
     this.getPrevMessagesSubscription = this.httpService.getPreviousMessages(this.roomId).subscribe((messages: any) => {
       this.messages = messages;
     });
@@ -47,7 +52,8 @@ export class RoomComponent implements OnInit, OnDestroy {
   }
 
   onSendMessage(message: string): void {
-    this.socketIoService.sendMessage(message);
+    const messageObj: ChatMessage = { roomId: this.roomId, personId: 1, text: message};
+    this.socketIoService.sendMessage(messageObj);
   }
 
   getMessages(): void {
@@ -55,6 +61,4 @@ export class RoomComponent implements OnInit, OnDestroy {
       this.messages = [...this.messages, newMsg];
     });
   }
-
-  
 }

@@ -6,10 +6,6 @@ export interface User {
     room: string
 };
 
-// export interface Error {
-//     error: string
-// }
-
 class Users {
     private users: Array<User> = [];
 

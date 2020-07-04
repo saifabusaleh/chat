@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import socketIOClient from 'socket.io-client';
 import { Observable } from 'rxjs/internal/Observable';
+import { Message } from '@angular/compiler/src/i18n/i18n_ast';
+import { ChatMessage } from '@components/room/room.component';
 
 
-export interface Message {
+export interface JoinRoom {
   room: string;
-  name: string;
+  username: string;
 }
 
 @Injectable({
@@ -20,11 +22,11 @@ export class SocketIoService {
     this.socket = socketIOClient(this.BASE_URL);
   }
 
-  public joinRoom(message: Message): void {
-    this.socket.emit('join', message);
+  public joinRoom(message: JoinRoom): void {
+    this.socket.emit('join_room', message);
   }
 
-  public sendMessage(message: any): void {
+  public sendMessage(message: ChatMessage): void {
     this.socket.emit('sendMessage', message);
   }
 
