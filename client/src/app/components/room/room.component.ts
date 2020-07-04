@@ -19,7 +19,10 @@ export class RoomComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.roomId = history.state.roomId;
+    if (history.state.roomId) {
+      sessionStorage.setItem('roomId', history.state.roomId);
+    }
+    this.roomId = +sessionStorage.getItem('roomId');
     this.roomName = this.route.snapshot.paramMap.get('name');
     // get messages
     this.messages$ = this.httpService.getMessages(this.roomId);
