@@ -12,4 +12,8 @@ export class BottomBarComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onSubmit(event: any): void {
+    console.log(event.target.value.text);
+  }
+
 }
