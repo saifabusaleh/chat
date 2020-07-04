@@ -8,7 +8,6 @@ export const getRooms = async () => {
 }
 
 export const createRoom = async (name: string) => {
-    //TODO: remove special characters
     return runQuery(`INSERT INTO public.room (name) VALUES ('${name}') RETURNING *;`);
 }
 // Messages
@@ -19,7 +18,6 @@ export const getMessages = async (roomId: number) => {
 }
 
 export const sendMessage = async (text: string, roomId: number, personId: number ) => {
-    //TODO: remove special characters
     return runQuery(`INSERT INTO public.message (message_text, posted_datetime, room_id, person_id)
     VALUES
         ('${text}', DEFAULT, ${roomId}, ${personId}) RETURNING *;`);
@@ -28,7 +26,6 @@ export const sendMessage = async (text: string, roomId: number, personId: number
 // Users
 
 export const register = async (username: string) => {
-    //TODO: remove special characters
     return runQuery(`INSERT INTO  PERSON(name) VALUES ('${username}') RETURNING *;`);
 }
 

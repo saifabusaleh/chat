@@ -3,6 +3,7 @@ import { QueryResult } from 'pg';
 import logger = require('../utils/logger');
 const pkg = require('./../../package.json');
 import * as sampleModel from '../models/sample.model';
+const httpStatus = require('http-status')
 
 export const healthcheck = (req: Request, res: Response) => {
     res.json({
@@ -17,10 +18,10 @@ export const healthcheckDb = async (req: Request, res: Response) => {
     let result : QueryResult;
     try {
         result = await sampleModel.getTimeModel();
-        res.status(200).json(result.rows);
+        res.status(httpStatus.OK).json(result.rows);
     } catch (error) {
         logger.error(`getTime error: ${error.message}`);
-        res.status(500).json({status:'error', message: error.message, statusCode: 500});
+        res.status(httpStatus.INTERNAL_SERVER_ERROR).json({status:'error', message: error.message, statusCode: 500});
     }
     
 }

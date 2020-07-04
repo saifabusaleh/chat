@@ -34,7 +34,7 @@ export class RoomsComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.getRoomsSubscription.unsubscribe();
 
-    if(this.createRoomSubscription) {
+    if (this.createRoomSubscription) {
       this.createRoomSubscription.unsubscribe();
     }
   }
