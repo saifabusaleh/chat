@@ -8,20 +8,20 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from '@components/app/app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RoomComponent } from '@components/room/room.component';
-import { ChatComponent } from '@components/room/chat/chat.component';
 import { TopBarComponent } from '@components/room/top-bar/top-bar.component';
 import { BottomBarComponent } from '@components/room/bottom-bar/bottom-bar.component';
+import { MessagesComponent } from './components/room/messages/messages.component';
 
 
 @NgModule({
   declarations: [
     RoomsComponent,
-    ChatComponent,
     LoginComponent,
     AppComponent,
     RoomComponent,
     TopBarComponent,
-    BottomBarComponent
+    BottomBarComponent,
+    MessagesComponent
   ],
   imports: [
     BrowserModule,
