@@ -27,7 +27,7 @@ export class HttpService {
 
 
   // messages
-  public getMessages(roomId: number): Observable<any> {
+  public getPreviousMessages(roomId: number): Observable<any> {
     const reqUrl = `${this.BASE_API_URL}/messages?roomId=${roomId}`;
     return this.http.get(reqUrl);
   }

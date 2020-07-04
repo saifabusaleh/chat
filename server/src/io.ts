@@ -36,7 +36,7 @@ export class ioService {
                 const user = this.users.getUser(socket.id);
                 if(user) {
                     logger.info(`got message: ${text} from user: ${user.name}`)
-                    this.io.to(user.room).emit('message', { user: user.name, text: text });
+                    this.io.to(user.room).emit('message', { name: user.name, message_text: text });
                 }
                 // callback();
             });

@@ -15,7 +15,7 @@ export class BottomBarComponent implements OnInit {
   }
 
   onSubmit(event: any): void {
-    const text =  event.target[0].value;
+    const text = event.target[0].value;
     if (!!text) {
       this.sendMessageEvent.emit(text);
     }

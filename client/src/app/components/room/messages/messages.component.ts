@@ -10,7 +10,7 @@ export class MessagesComponent implements OnInit {
   constructor() { }
 
   @Input()
-  messages$: any;
+  messages: any;
 
   ngOnInit(): void {
   }

@@ -16,12 +16,11 @@ export class SocketIoService {
 
   private socket;
   readonly BASE_URL = 'http://localhost:3333';
-
   constructor() {
     this.socket = socketIOClient(this.BASE_URL);
-   }
+  }
 
-   public joinRoom(message: Message): void {
+  public joinRoom(message: Message): void {
     this.socket.emit('join', message);
   }
 
@@ -30,10 +29,10 @@ export class SocketIoService {
   }
 
   public getMessagesObs(): Observable<string> {
-    return Observable.create((observer) => {
-        this.socket.on('message', (message) => {
-            observer.next(message);
-        });
+    return new Observable((observer) => {
+      this.socket.on('message', (message: any) => {
+        observer.next(message);
+      });
     });
   }
 }
