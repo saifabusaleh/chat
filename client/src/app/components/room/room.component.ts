@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-room',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RoomComponent implements OnInit {
 
-  constructor() { }
+  roomId: number;
+  roomName: string;
+
+  constructor(private route: ActivatedRoute) {
+   }
 
   ngOnInit(): void {
+    this.roomId = history.state.roomId;
+    this.roomName = this.route.snapshot.paramMap.get('name');
   }
 
 }

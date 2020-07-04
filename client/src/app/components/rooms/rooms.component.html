@@ -3,7 +3,7 @@
     <div class="rooms-list">
         <h3 class="heading">Rooms List:</h3>
         <div>
-            <a [routerLink]="['/room', room.room_id]" class="room" *ngFor="let room of rooms$ | async">{{room.name}}</a>
+            <a [routerLink]="['/room', room.name]" [state]="{roomId: room.room_id}" class="room" *ngFor="let room of rooms$ | async">{{room.name}}</a>
         </div>
     </div>
 </div>

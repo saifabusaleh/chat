@@ -7,7 +7,7 @@ import { RoomComponent } from './components/room/room.component';
 
 const routes: Routes = [
   { path: 'rooms', component: RoomsComponent },
-  { path: 'room/:id', component: RoomComponent },
+  { path: 'room/:name', component: RoomComponent },
 
   { path: '', component: LoginComponent },
 ];
