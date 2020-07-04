@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { HttpService, Message } from '@services/http.service';
+import { HttpService } from '@services/http.service';
+import { SocketIoService, Message } from '@services/socket-io.service';
 import { Observable } from 'rxjs/internal/Observable';
 
 @Component({
@@ -15,7 +16,8 @@ export class RoomComponent implements OnInit {
   messages$: Observable<any>;
 
   constructor(private route: ActivatedRoute,
-              private httpService: HttpService) {
+              private httpService: HttpService,
+              private socketIoService: SocketIoService) {
    }
 
   ngOnInit(): void {
@@ -29,7 +31,19 @@ export class RoomComponent implements OnInit {
 
 
     const msg: Message = { name: JSON.parse(sessionStorage.getItem('user')).username , room: this.roomName};
-    this.httpService.joinRoom(msg);
+    this.socketIoService.joinRoom(msg);
+    this.getMessages();
+  }
+
+
+  onSendMessage(message: string): void {
+    this.socketIoService.sendMessage(message);
+  }
+
+  getMessages(): void {
+    this.socketIoService.getMessagesObs().subscribe((message: string) => {
+      console.log('oops I got message: ', message);
+    });
   }
 
 }

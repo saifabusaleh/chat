@@ -1,6 +1,7 @@
 
 import * as socketIo from 'socket.io';
 import Users, { User } from './users';
+import logger = require('./utils/logger');
 
 export enum ChatEvent {
     CONNECT = 'connect',
@@ -31,10 +32,11 @@ export class ioService {
             //     this.io.emit('message', m);
             //   });
 
-            socket.on('sendMessage', (m: any) => {
+            socket.on('sendMessage', (text: any) => {
                 const user = this.users.getUser(socket.id);
                 if(user) {
-                    this.io.to(user.room).emit('message', { user: user.name, text: m.text });
+                    logger.info(`got message: ${text} from user: ${user.name}`)
+                    this.io.to(user.room).emit('message', { user: user.name, text: text });
                 }
                 // callback();
             });
@@ -45,8 +47,9 @@ export class ioService {
                 const user: User = this.users.addUser({ id: socket.id, name, room });
 
                 socket.join(user.room);
+                logger.info(`user ${m.name} joined room ${m.room}`)
 
-                console.log('user: ', m.name, ' joined room: ' + m.room);
+                // console.log('user: ', m.name, ' joined room: ' + m.room);
                 this.io.to(user.room).emit('roomData', { room: user.room, users: this.users.getUsersInRoom(user.room) });
 
             });

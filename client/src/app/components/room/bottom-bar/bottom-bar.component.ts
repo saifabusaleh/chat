@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-bottom-bar',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./bottom-bar.component.scss']
 })
 export class BottomBarComponent implements OnInit {
+
+  @Output() sendMessageEvent = new EventEmitter<string>();
 
   constructor() { }
 
@@ -15,8 +17,7 @@ export class BottomBarComponent implements OnInit {
   onSubmit(event: any): void {
     const text =  event.target[0].value;
     if (!!text) {
-      // send
+      this.sendMessageEvent.emit(text);
     }
   }
-
 }

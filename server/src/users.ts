@@ -1,3 +1,5 @@
+import logger = require('./utils/logger');
+
 export interface User {
     id: number,
     name: string
@@ -18,10 +20,12 @@ class Users {
         const existingUser = this.users.find((user) => user.room === room && user.name === name);
 
         if (!name || !room) {
-            throw new Error('Username and room are required.')
+            logger.info('Username and room are required.');
+          //  throw new Error('Username and room are required.')
         }
         if (existingUser) {
-            throw new Error('Username is taken.')
+            logger.info('Username:' + existingUser.name + ' is taken.');
+            // throw new Error('Username is taken.')
         } 
 
         const newUser: User = { id, name, room };
