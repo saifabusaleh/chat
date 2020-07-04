@@ -4,10 +4,15 @@ import { HttpService } from '@services/http.service';
 import { SocketIoService, JoinRoom } from '@services/socket-io.service';
 import { Subscription } from 'rxjs';
 
-export interface ChatMessage {
+export interface ClientToServerChatMessage {
   text: string;
   roomId: number;
   personId: number;
+}
+
+export interface ServerToClientChatMessage {
+  name: string;
+  message_text: string;
 }
 
 @Component({
@@ -39,11 +44,11 @@ export class RoomComponent implements OnInit, OnDestroy {
 
 
     const msg: JoinRoom = { username: JSON.parse(sessionStorage.getItem('user')).username, room: this.roomName };
-    this.getPrevMessagesSubscription = this.httpService.getPreviousMessages(this.roomId).subscribe((messages: any) => {
-      this.messages = messages;
+    this.getPrevMessagesSubscription = this.httpService.getPreviousMessages(this.roomId).subscribe((previousMessages: any) => {
+      this.messages = previousMessages;
+      this.socketIoService.joinRoom(msg);
+      this.getNewMessages();
     });
-    this.socketIoService.joinRoom(msg);
-    this.getMessages();
   }
 
   ngOnDestroy(): void {
@@ -52,12 +57,12 @@ export class RoomComponent implements OnInit, OnDestroy {
   }
 
   onSendMessage(message: string): void {
-    const messageObj: ChatMessage = { roomId: this.roomId, personId: 1, text: message};
+    const messageObj: ClientToServerChatMessage = { roomId: this.roomId, personId: 1, text: message};
     this.socketIoService.sendMessage(messageObj);
   }
 
-  getMessages(): void {
-    this.socketIoService.getMessagesObs().subscribe((newMsg: string) => {
+  getNewMessages(): void {
+    this.socketIoService.getMessagesObs().subscribe((newMsg: ServerToClientChatMessage) => {
       this.messages = [...this.messages, newMsg];
     });
   }

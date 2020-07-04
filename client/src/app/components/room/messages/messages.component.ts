@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ServerToClientChatMessage } from '../room.component';
 
 @Component({
   selector: 'app-messages',
@@ -10,7 +11,7 @@ export class MessagesComponent implements OnInit {
   constructor() { }
 
   @Input()
-  messages: any;
+  messages: ServerToClientChatMessage[];
 
   ngOnInit(): void {
   }

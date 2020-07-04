@@ -17,10 +17,15 @@ export interface JoinRoom {
     username: string;
 }
 
-export interface ChatMessage {
+export interface ClientToServerChatMessage {
     text: string,
     roomId: number,
-    personId: number 
+    personId: number
+}
+
+export interface ServerToClientChatMessage {
+    name: string,
+    message_text: string
 }
 export class ioService {
 
@@ -36,14 +41,14 @@ export class ioService {
             logger.info('Connected client');
 
 
-            socket.on(ChatEvent.SEND_MESSAGE, async (message: ChatMessage) => {
+            socket.on(ChatEvent.SEND_MESSAGE, async (message: ClientToServerChatMessage) => {
                 const user = this.users.getUser(socket.id);
-                if(user) {
+                if (user) {
                     logger.info(`got message: ${message.text} from user: ${user.name} room_id: ${message.roomId} personId: ${message.personId}`);
-                    let result : QueryResult = await chatModel.sendMessage(message.text, message.roomId, message.personId);
-                    console.log('res: ' + result.rows.length);
-                    if(result.rows && result.rows.length) {
-                        this.io.to(user.room).emit(ChatEvent.MESSAGE, { name: user.name, message_text: message.text });
+                    let result: QueryResult = await chatModel.sendMessage(message.text, message.roomId, message.personId);
+                    if (result.rows && result.rows.length) {
+                        const toClientMsg: ServerToClientChatMessage = { name: user.name, message_text: message.text };
+                        this.io.to(user.room).emit(ChatEvent.MESSAGE, toClientMsg);
                     }
                 }
                 // callback();
@@ -54,15 +59,28 @@ export class ioService {
                 const roomName = m.room;
                 const user: User = this.users.addUser({ id: socket.id, name, room: roomName });
 
-                socket.join(user.room);
-                logger.info(`user ${m.username} joined room ${m.room}`)
+                if (user) {
+                    const toClientMsg: ServerToClientChatMessage = { name: 'admin', message_text: `${user.name}, welcome to room ${user.room}.` };
 
-                this.io.to(user.room).emit('roomData', { room: user.room, users: this.users.getUsersInRoom(user.room) });
+                    socket.emit(ChatEvent.MESSAGE, toClientMsg);
+                    socket.join(user.room);
+                    logger.info(`user ${m.username} joined room ${m.room}`)
+
+                    this.io.to(user.room).emit('roomData', { room: user.room, users: this.users.getUsersInRoom(user.room) });
+                }
 
             });
 
             socket.on(ChatEvent.DISCONNECT, () => {
-                logger.info('Client disconnected')
+                logger.info('Client disconnected');
+                const user = this.users.getUser(socket.id);
+
+                if (user) {
+                    const toClientMsg: ServerToClientChatMessage = { name: 'admin', message_text: `${user.name} has left.` };
+
+                    this.io.to(user.room).emit('message', toClientMsg);
+                    this.io.to(user.room).emit('roomData', { room: user.room, users: this.users.getUsersInRoom(user.room) });
+                }
             });
         });
     }
