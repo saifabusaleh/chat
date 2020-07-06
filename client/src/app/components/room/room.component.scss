@@ -4,7 +4,7 @@
   flex-direction: column;
   justify-content: space-between;
 
-  app-messages {
-    height: 50rem;
+  app-messages{ 
+    height: inherit;
   }
 }
