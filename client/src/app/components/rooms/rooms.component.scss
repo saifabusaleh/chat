@@ -3,11 +3,11 @@
     flex-direction: column;
     justify-content: center;
     text-align: center;
-    height: 100vh;
+    min-height: 100vh;
     background-color: #1A1A1D;
 
-    .mb-15 {
-        margin-bottom: 15px;
+    .top-container {
+        margin-bottom: 1rem;
     }
 
     .join-button {
@@ -39,7 +39,7 @@
         margin-bottom: 0.9375rem;
         font-size: 1.25em;
         margin: 0 auto;
-        padding: 20px 80px;
+        padding: 1.2rem 6rem;
         border-width: 1px;
         border-style: solid;
         border-color: rgb(71, 77, 80);

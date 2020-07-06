@@ -1,8 +1,8 @@
 <div class="rooms-container">
-    <div>
-        <form (ngSubmit)="onSubmit($event)">
+    <div class="top-container">
+        <form  (ngSubmit)="onSubmit($event)">
             <input class="room-input" [(ngModel)]="roomName"  name="room" placeholder="Room Name">
-            <button  class="join-button mb-15">Add Room</button>
+            <button  class="join-button">Add Room</button>
          </form>
     </div>
     <div class="rooms-list">
