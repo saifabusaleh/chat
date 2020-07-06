@@ -1,13 +1,13 @@
 <div class="rooms-container">
     <div>
         <form (ngSubmit)="onSubmit($event)">
-            <input [(ngModel)]="roomName"  name="room" placeholder="Room Name">
+            <input class="room-input" [(ngModel)]="roomName"  name="room" placeholder="Room Name">
             <button  class="join-button mb-15">Add Room</button>
          </form>
     </div>
     <div class="rooms-list">
         <h3 class="heading">Rooms List:</h3>
-        <div>
+        <div class="rooms-list-container">
             <a [routerLink]="['/room', room.name]" [state]="{roomId: room.room_id}" class="room" *ngFor="let room of rooms">{{room.name}}</a>
         </div>
     </div>
