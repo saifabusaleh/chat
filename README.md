@@ -1,5 +1,7 @@
 # Chat Application
 
+Live Chat Application made with Angular/Typescript/Express/Node.js/pgSQL
+
 ## Getting started
 
 Open cmd and run:
