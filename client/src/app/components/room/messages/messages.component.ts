@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ServerToClientChatMessage } from '../room.component';
+import { ServerToClientChatMessage } from '@services/http.service';
 
 @Component({
   selector: 'app-messages',

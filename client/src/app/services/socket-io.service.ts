@@ -1,10 +1,15 @@
 import { Injectable } from '@angular/core';
 import socketIOClient from 'socket.io-client';
 import { Observable } from 'rxjs/internal/Observable';
-import { ClientToServerChatMessage, ServerToClientChatMessage } from '@components/room/room.component';
+import { ServerToClientChatMessage } from './http.service';
 
+export interface ClientToServerChatMessage {
+  text: string;
+  roomId: number;
+  personId: number;
+}
 
-export interface JoinRoom {
+export interface JoinRoomRequest {
   room: string;
   username: string;
 }
@@ -21,7 +26,7 @@ export class SocketIoService {
     this.socket = socketIOClient(this.BASE_URL);
   }
 
-  public joinRoom(message: JoinRoom): void {
+  public joinRoom(message: JoinRoomRequest): void {
     this.socket.emit('join_room', message);
   }
 
@@ -31,7 +36,7 @@ export class SocketIoService {
 
   public getMessagesObs(): Observable<ServerToClientChatMessage> {
     return new Observable((observer) => {
-      this.socket.on('message', (message: any) => {
+      this.socket.on('message', (message: ServerToClientChatMessage) => {
         observer.next(message);
       });
     });

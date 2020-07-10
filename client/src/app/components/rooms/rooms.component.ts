@@ -15,7 +15,7 @@ export interface RoomResponse {
 
 export class RoomsComponent implements OnInit, OnDestroy {
 
-  rooms: any[];
+  rooms: RoomResponse[];
   currentUser = JSON.parse(sessionStorage.getItem('user')).username;
   getRoomsSubscription: Subscription;
   createRoomSubscription: Subscription;
@@ -33,15 +33,12 @@ export class RoomsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.getRoomsSubscription.unsubscribe();
-
     if (this.createRoomSubscription) {
       this.createRoomSubscription.unsubscribe();
     }
   }
 
-  public onSubmit(event: any): void {
-    console.log(this.roomName);
-
+  public onSubmit(event): void {
     if (!!this.roomName) {
       this.createRoomSubscription = this.httpService.createRoom(this.roomName).subscribe((newRoom: RoomResponse[]) => {
         if (newRoom && newRoom.length) {

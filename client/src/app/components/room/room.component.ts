@@ -1,19 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { HttpService } from '@services/http.service';
-import { SocketIoService, JoinRoom } from '@services/socket-io.service';
+import { HttpService, ServerToClientChatMessage } from '@services/http.service';
+import { SocketIoService, JoinRoomRequest, ClientToServerChatMessage } from '@services/socket-io.service';
 import { Subscription } from 'rxjs';
 
-export interface ClientToServerChatMessage {
-  text: string;
-  roomId: number;
-  personId: number;
-}
 
-export interface ServerToClientChatMessage {
-  name: string;
-  message_text: string;
-}
+
+
 
 @Component({
   selector: 'app-room',
@@ -24,7 +17,7 @@ export class RoomComponent implements OnInit, OnDestroy {
 
   roomId: number;
   roomName: string;
-  messages: any;
+  messages: ServerToClientChatMessage[];
 
   getPrevMessagesSubscription: Subscription;
   getMessagesObsSubscription: Subscription;
@@ -43,12 +36,13 @@ export class RoomComponent implements OnInit, OnDestroy {
     this.roomName = this.route.snapshot.paramMap.get('name');
 
 
-    const msg: JoinRoom = { username: JSON.parse(sessionStorage.getItem('user')).username, room: this.roomName };
-    this.getPrevMessagesSubscription = this.httpService.getPreviousMessages(this.roomId).subscribe((previousMessages: any) => {
-      this.messages = previousMessages;
-      this.socketIoService.joinRoom(msg);
-      this.getNewMessages();
-    });
+    const msg: JoinRoomRequest = { username: JSON.parse(sessionStorage.getItem('user')).username, room: this.roomName };
+    this.getPrevMessagesSubscription = this.httpService.getPreviousMessages(this.roomId)
+      .subscribe((previousMessages: ServerToClientChatMessage[]) => {
+        this.messages = previousMessages;
+        this.socketIoService.joinRoom(msg);
+        this.getNewMessages();
+      });
   }
 
   ngOnDestroy(): void {
@@ -57,7 +51,7 @@ export class RoomComponent implements OnInit, OnDestroy {
   }
 
   onSendMessage(message: string): void {
-    const messageObj: ClientToServerChatMessage = { roomId: this.roomId, personId: 1, text: message};
+    const messageObj: ClientToServerChatMessage = { roomId: this.roomId, personId: 1, text: message };
     this.socketIoService.sendMessage(messageObj);
   }
 

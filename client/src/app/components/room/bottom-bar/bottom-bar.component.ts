@@ -15,8 +15,7 @@ export class BottomBarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit(event: any): void {
-    // const text = event.target[0].value;
+  onSubmit(event): void {
     if (!!this.text) {
       this.sendMessageEvent.emit(this.text);
       this.text = '';
