@@ -8,7 +8,7 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 export class BottomBarComponent implements OnInit {
 
   @Output() sendMessageEvent = new EventEmitter<string>();
-  text: string;
+  message: string;
 
   constructor() { }
 
@@ -16,9 +16,9 @@ export class BottomBarComponent implements OnInit {
   }
 
   onSubmit(event): void {
-    if (!!this.text) {
-      this.sendMessageEvent.emit(this.text);
-      this.text = '';
+    if (!!this.message) {
+      this.sendMessageEvent.emit(this.message);
+      this.message = '';
     }
   }
 }

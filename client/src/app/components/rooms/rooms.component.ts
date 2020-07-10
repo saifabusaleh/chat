@@ -15,11 +15,11 @@ export interface RoomResponse {
 
 export class RoomsComponent implements OnInit, OnDestroy {
 
-  rooms: RoomResponse[];
-  currentUser = JSON.parse(sessionStorage.getItem('user')).username;
-  getRoomsSubscription: Subscription;
-  createRoomSubscription: Subscription;
+  private getRoomsSubscription: Subscription;
+  private createRoomSubscription: Subscription;
 
+
+  rooms: RoomResponse[];
   roomName: string;
 
   constructor(private httpService: HttpService) { }

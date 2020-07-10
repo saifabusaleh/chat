@@ -4,10 +4,6 @@ import { HttpService, ServerToClientChatMessage } from '@services/http.service';
 import { SocketIoService, JoinRoomRequest, ClientToServerChatMessage } from '@services/socket-io.service';
 import { Subscription } from 'rxjs';
 
-
-
-
-
 @Component({
   selector: 'app-room',
   templateUrl: './room.component.html',
@@ -15,12 +11,12 @@ import { Subscription } from 'rxjs';
 })
 export class RoomComponent implements OnInit, OnDestroy {
 
-  roomId: number;
+  private roomId: number;
+  private getPrevMessagesSubscription: Subscription;
+  private getMessagesObsSubscription: Subscription;
+
   roomName: string;
   messages: ServerToClientChatMessage[];
-
-  getPrevMessagesSubscription: Subscription;
-  getMessagesObsSubscription: Subscription;
 
   constructor(private route: ActivatedRoute,
               private httpService: HttpService,
