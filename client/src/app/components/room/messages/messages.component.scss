@@ -1,8 +1,5 @@
 .messages-container {
     padding: 15px;
-    overflow: auto;
-    flex: auto;
-    height: inherit;
     background-color: #282c34;
 
     .messageBox {
@@ -29,7 +26,6 @@
       
       .messageContainer {
         display: flex;
-        justify-content: flex-end;
         padding: 0 5%;
         margin-top: 3px;
       }
