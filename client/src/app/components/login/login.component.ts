@@ -10,7 +10,8 @@ import { HttpService, RegisterResponse } from 'src/app/services/http.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router: Router,
+  constructor(
+    private router: Router,
     private httpService: HttpService) { }
 
   ngOnInit(): void {
