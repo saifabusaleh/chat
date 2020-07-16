@@ -11,7 +11,7 @@ import { HttpService, RegisterResponse } from 'src/app/services/http.service';
 export class LoginComponent implements OnInit {
 
   constructor(private router: Router,
-              private httpService: HttpService) { }
+    private httpService: HttpService) { }
 
   ngOnInit(): void {
     if (sessionStorage.getItem('user')) {

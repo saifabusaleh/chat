@@ -19,8 +19,8 @@ export class RoomComponent implements OnInit, OnDestroy {
   messages: ServerToClientChatMessage[];
 
   constructor(private route: ActivatedRoute,
-              private httpService: HttpService,
-              private socketIoService: SocketIoService) {
+    private httpService: HttpService,
+    private socketIoService: SocketIoService) {
   }
 
 

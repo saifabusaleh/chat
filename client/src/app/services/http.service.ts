@@ -38,7 +38,7 @@ export class HttpService {
 
   public createRoom(roomName: string): Observable<RoomResponse[]> {
     const reqUrl = `${this.BASE_API_URL}/createRoom`;
-    return this.http.post<RoomResponse[]>(reqUrl, {roomName});
+    return this.http.post<RoomResponse[]>(reqUrl, { roomName });
   }
 
 

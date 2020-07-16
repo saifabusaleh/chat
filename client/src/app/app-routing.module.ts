@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'room/:name', component: RoomComponent, canActivate: [AuthGuard] },
 
   { path: '', component: LoginComponent },
-  { path: '**', redirectTo: ''}
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({
