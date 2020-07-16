@@ -1,46 +1,44 @@
 .login-container {
-    display: flex;
-    // justify-content: center;
-    text-align: center;
-    height: 100vh;
-    // align-items: center;
+  display: flex;
+  text-align: center;
+  height: 100vh;
 
-    background-color: #1A1A1D;
+  background-color: #1a1a1d;
 
-    .login-form {
-        width: 30%;
-        margin: auto;
-    }
+  .login-form {
+    width: 30%;
+    margin: auto;
+  }
 
-    .heading {
-        color: white;
-        font-size: 2.5rem;
-        padding-bottom: 0.625rem;
-        border-bottom: 2px solid white;
-      }
+  .heading {
+    color: white;
+    font-size: 2.5rem;
+    padding-bottom: 0.625rem;
+    border-bottom: 2px solid white;
+  }
 
-      .join-input {
-        border-radius: 0;
-        padding: 0.9375rem 1.25rem;
-        width: 100%;
-      }
+  .join-input {
+    border-radius: 0;
+    padding: 0.9375rem 1.25rem;
+    width: 100%;
+  }
 
-      .join-button {
-            color: #fff !important;
-            text-transform: uppercase;
-            text-decoration: none;
-            background: #2979FF;
-            padding: 1.25rem;
-            border-radius: 5px;
-            display: inline-block;
-            border: none;
-            width: 100%;
-      }
-      .mt-20 {
-        margin-top: 1.25rem;
-      }
+  .join-button {
+    color: #fff !important;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: #2979ff;
+    padding: 1.25rem;
+    border-radius: 5px;
+    display: inline-block;
+    border: none;
+    width: 100%;
+  }
+  .mt-20 {
+    margin-top: 1.25rem;
+  }
 }
 
 * {
-    box-sizing: border-box;
-  }
+  box-sizing: border-box;
+}
