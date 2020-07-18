@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/internal/Observable';
+import { Injectable } from '@angular/core';
 import { RoomResponse } from '@components/rooms/rooms.component';
+import { Observable } from 'rxjs/internal/Observable';
 
 export interface RegisterResponse {
   name: string;

@@ -1,6 +1,6 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { HttpService } from '../../services/http.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { HttpService } from '../../services/http.service';
 
 export interface RoomResponse {
   room_id: number;

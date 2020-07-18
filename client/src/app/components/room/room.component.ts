@@ -1,7 +1,7 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpService, ServerToClientChatMessage } from '@services/http.service';
-import { SocketIoService, JoinRoomRequest, ClientToServerChatMessage } from '@services/socket-io.service';
+import { ClientToServerChatMessage, JoinRoomRequest, SocketIoService } from '@services/socket-io.service';
 import { Subscription } from 'rxjs';
 
 @Component({
