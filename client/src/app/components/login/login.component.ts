@@ -1,4 +1,4 @@
-import { Component, OnInit, ValueProvider } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpService, RegisterResponse } from 'src/app/services/http.service';
 
