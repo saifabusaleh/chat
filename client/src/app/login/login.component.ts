@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpService, RegisterResponse } from 'src/app/services/http.service';
+import { HttpService, RegisterResponse } from '../shared/http.service';
 
 
 @Component({

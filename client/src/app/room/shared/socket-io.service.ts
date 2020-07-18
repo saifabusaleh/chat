@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import socketIOClient from 'socket.io-client';
-import { ServerToClientChatMessage } from './http.service';
+import { ServerToClientChatMessage } from '../../shared/http.service';
 
 export interface ClientToServerChatMessage {
   text: string;

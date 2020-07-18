@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { HttpService, ServerToClientChatMessage } from '@services/http.service';
-import { ClientToServerChatMessage, JoinRoomRequest, SocketIoService } from '@services/socket-io.service';
 import { Subscription } from 'rxjs';
+import { HttpService, ServerToClientChatMessage } from '../shared/http.service';
+import { ClientToServerChatMessage, JoinRoomRequest, SocketIoService } from './shared/socket-io.service';
 
 @Component({
   selector: 'app-room',
