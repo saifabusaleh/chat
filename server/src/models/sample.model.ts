@@ -1,4 +1,4 @@
-import {QueryResult} from 'pg';
+import { QueryResult } from 'pg';
 import * as dbUtil from '../utils/dbUtil';
 
 /* 
@@ -7,8 +7,8 @@ import * as dbUtil from '../utils/dbUtil';
  */
 export const getTimeModel = async () => {
     let sql = "SELECT NOW();";
-    let data : string[][] = [];
-    let result : QueryResult;
+    let data: string[][] = [];
+    let result: QueryResult;
     try {
         result = await dbUtil.sqlToDB(sql, data);
         return result;

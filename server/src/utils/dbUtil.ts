@@ -16,7 +16,7 @@ const pool = new pg.Pool(pgconfig);
 
 logger.info(`DB Connection Settings: ${JSON.stringify(pgconfig)}`);
 
-pool.on('error', function (err:Error, client:pg.Client) {
+pool.on('error', function (err: Error, client: pg.Client) {
     logger.error(`idle client error, ${err.message} | ${err.stack}`);
 });
 
@@ -26,9 +26,9 @@ pool.on('error', function (err:Error, client:pg.Client) {
  * @param data: the data to be stored
  * @return result
  */
-export const sqlToDB = async (sql:string, data:string[][]) => {
+export const sqlToDB = async (sql: string, data: string[][]) => {
     logger.debug(`sqlToDB() sql: ${sql} | data: ${data}`);
-    let result : pg.QueryResult;
+    let result: pg.QueryResult;
     try {
         result = await pool.query(sql, data);
         return result;
@@ -43,7 +43,7 @@ export const sqlToDB = async (sql:string, data:string[][]) => {
  */
 export const getTransaction = async () => {
     logger.debug(`getTransaction()`);
-    const client : pg.Client = await pool.connect();
+    const client: pg.Client = await pool.connect();
     try {
         await client.query('BEGIN');
         return client;
@@ -58,9 +58,9 @@ export const getTransaction = async () => {
  * @param data: the data to be stored
  * @return result
  */
-export const sqlExecSingleRow = async (client:pg.Client, sql:string, data:string[][]) => {
+export const sqlExecSingleRow = async (client: pg.Client, sql: string, data: string[][]) => {
     logger.debug(`sqlExecSingleRow() sql: ${sql} | data: ${data}`);
-    let result : pg.QueryResult;
+    let result: pg.QueryResult;
     try {
         result = await client.query(sql, data);
         logger.debug(`sqlExecSingleRow(): ${result.command} | ${result.rowCount}`);
@@ -77,11 +77,11 @@ export const sqlExecSingleRow = async (client:pg.Client, sql:string, data:string
  * @param data: the data to be stored
  * @return result
  */
-export const sqlExecMultipleRows = async (client:pg.Client, sql:string, data:string[][]) => {
+export const sqlExecMultipleRows = async (client: pg.Client, sql: string, data: string[][]) => {
     logger.debug(`inside sqlExecMultipleRows()`);
     logger.debug(`sqlExecMultipleRows() data: ${data}`);
     if (data.length !== 0) {
-        for(let item of data) {
+        for (let item of data) {
             try {
                 logger.debug(`sqlExecMultipleRows() item: ${item}`);
                 logger.debug(`sqlExecMultipleRows() sql: ${sql}`);
@@ -100,7 +100,7 @@ export const sqlExecMultipleRows = async (client:pg.Client, sql:string, data:str
 /*
  * Rollback transaction
  */
-export const rollback = async (client:pg.Client) => {
+export const rollback = async (client: pg.Client) => {
     if (typeof client !== 'undefined' && client) {
         try {
             logger.info(`sql transaction rollback`);
@@ -118,7 +118,7 @@ export const rollback = async (client:pg.Client) => {
 /*
  * Commit transaction
  */
-export const commit = async (client:pg.Client) => {
+export const commit = async (client: pg.Client) => {
     logger.debug(`sql transaction committed`);
     try {
         await client.query('COMMIT');

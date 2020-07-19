@@ -9,7 +9,7 @@ export interface User {
 class Users {
     private users: Array<User> = [];
 
-    public addUser = (user: User): User  => {
+    public addUser = (user: User): User => {
         let name = user.name.trim().toLowerCase();
         let room = user.room.trim().toLowerCase();
         let id = user.id;
@@ -17,12 +17,12 @@ class Users {
 
         if (!name || !room) {
             logger.info('Username and room are required.');
-          //  throw new Error('Username and room are required.')
+            //  throw new Error('Username and room are required.')
         }
         if (existingUser) {
             logger.info('Username:' + existingUser.name + ' is taken.');
             // throw new Error('Username is taken.')
-        } 
+        }
 
         const newUser: User = { id, name, room };
 
@@ -31,9 +31,9 @@ class Users {
         return newUser;
     }
 
-    public removeUser = (id: number): User  => {
+    public removeUser = (id: number): User => {
         const index = this.users.findIndex((user) => user.id === id);
-        if(index === -1) {
+        if (index === -1) {
             throw new Error('user is not defined');
         }
         return this.users.splice(index, 1)[0];

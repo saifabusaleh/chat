@@ -1,10 +1,10 @@
-import * as chatModel from './models/chat.model';
+import { QueryResult } from 'pg';
 import * as socketIo from 'socket.io';
+import { ChatEvent } from './enums';
+import * as chatModel from './models/chat.model';
+import { ClientToServerChatMessage, JoinRoom, ServerToClientChatMessage } from './types';
 import Users, { User } from './users';
 import logger = require('./utils/logger');
-import { QueryResult } from 'pg';
-import { ChatEvent } from './enums';
-import { ClientToServerChatMessage, ServerToClientChatMessage, JoinRoom } from './types';
 
 export class ioService {
 

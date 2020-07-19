@@ -1,14 +1,13 @@
 // src/app.ts
 import config = require('./config');
-import * as express from 'express';
 import * as bodyParser from 'body-parser';
-import logger = require('./utils/logger');
-//import controllers
-import healthcheckRouter from './routes/healthcheck.route';
-import apiRouter from './routes/api.route';
-import { ioService } from './io';
-import { createServer, Server } from 'http';
 import * as cors from "cors";
+import * as express from 'express';
+import { createServer, Server } from 'http';
+import { ioService } from './io';
+import apiRouter from './routes/api.route';
+import healthcheckRouter from './routes/healthcheck.route';
+import logger = require('./utils/logger');
 
 export class ChatServer {
   private _app: express.Express;
@@ -30,7 +29,7 @@ export class ChatServer {
 
   }
 
-  get app (): express.Application {
+  get app(): express.Application {
     return this._app;
   }
 }

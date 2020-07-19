@@ -1,6 +1,6 @@
 
-import * as dbUtil from '../utils/dbUtil';
 import { QueryResult } from 'pg';
+import * as dbUtil from '../utils/dbUtil';
 
 // Rooms
 export const getRooms = async () => {
@@ -17,7 +17,7 @@ export const getMessages = async (roomId: number) => {
      ON (message.person_id = person.person_id)  WHERE room_id=${roomId};`);
 }
 
-export const sendMessage = async (text: string, roomId: number, personId: number ) => {
+export const sendMessage = async (text: string, roomId: number, personId: number) => {
     return runQuery(`INSERT INTO public.message (message_text, posted_datetime, room_id, person_id)
     VALUES
         ('${text}', DEFAULT, ${roomId}, ${personId}) RETURNING *;`);
@@ -31,8 +31,8 @@ export const register = async (username: string) => {
 
 /// helpers
 const runQuery = async (sqlQuery: string) => {
-    let data : string[][] = [];
-    let result : QueryResult;
+    let data: string[][] = [];
+    let result: QueryResult;
     try {
         result = await dbUtil.sqlToDB(sqlQuery, data);
         return result;
