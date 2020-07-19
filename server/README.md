@@ -2,14 +2,21 @@
 
 
 ## Getting started
-Create `.env` file and put into it 
-## Set the following ENV VARs for your DB Connections:
-`export DB_USER=''  DB='' DB_PASS='' DB_HOST='' DB_PORT='' DB_MAX_CLIENTS='' DB_IDLE_TIMEOUT_MS=''`
-see `.env.example` 
+Create `.env` file and put into it (see `.env.example` for reference 
+)
 
-Run `npm install` to install the dependencies
+```
+PORT=<PORT>
+DB_USER=<DB_USER>
+DB_PASS=<DB_PASS>
+DB=<DB_NAME>
+```
 
-Run `npm start` to debug locally
+
+
+`npm install` to install the dependencies
+
+`npm start` to debug locally
 
 ## Transpile TypeScript to the build folder
 run `tsc`
