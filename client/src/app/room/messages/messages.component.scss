@@ -10,6 +10,7 @@
     color: $fg;
     display: inline-block;
     max-width: 80%;
+    background: rgb(41, 42, 45);
   }
 
   .messageText {
@@ -39,39 +40,7 @@
     font-weight: bold;
   }
 
-  .pl-10 {
-    padding-left: 10px;
-  }
-
-  .pr-10 {
-    padding-right: 10px;
-  }
-
   .justifyStart {
     justify-content: flex-start;
-  }
-
-  .justifyEnd {
-    justify-content: flex-end;
-  }
-
-  .colorWhite {
-    color: $fg;
-  }
-
-  .colorDark {
-    color: #353535;
-  }
-
-  .backgroundBlue {
-    background: #2979ff;
-  }
-
-  .backgroundDark {
-    background: $bg;
-  }
-
-  .backgroundLight {
-    background: $fg;
   }
 }
