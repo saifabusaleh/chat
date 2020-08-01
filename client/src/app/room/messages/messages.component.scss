@@ -1,12 +1,13 @@
+@import "variables.scss";
+
 .messages-container {
   padding: 15px;
-  background-color: #282c34;
+  background-color: $messages-color;
 
   .messageBox {
-    background: #f3f3f3;
     border-radius: 20px;
     padding: 5px 20px;
-    color: white;
+    color: $fg;
     display: inline-block;
     max-width: 80%;
   }
@@ -34,7 +35,6 @@
     display: flex;
     align-items: center;
     font-family: Helvetica;
-    color: white;
     letter-spacing: 0.3px;
     font-weight: bold;
   }
@@ -56,7 +56,7 @@
   }
 
   .colorWhite {
-    color: white;
+    color: $fg;
   }
 
   .colorDark {
@@ -68,14 +68,10 @@
   }
 
   .backgroundDark {
-    background: rgba(0, 0, 0, 0.25);
+    background: $bg;
   }
 
   .backgroundLight {
-    background: #f3f3f3;
+    background: $fg;
   }
-}
-
-* {
-  box-sizing: border-box;
 }

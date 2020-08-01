@@ -1,17 +1,14 @@
 .top-bar-container {
-    // display: flex;
-    // align-items: center;
-    // justify-content: space-between;
     background: #4a4e56;
     border-radius: 4px 4px 0 0;
     height: 60px;
     width: 100%;
-    
+
     .left-container {
         flex: 0.5;
         display: flex;
         align-items: center;
         margin-left: 5%;
-        color: white;  
+        color: white;
     }
 }
