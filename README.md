@@ -1,16 +1,24 @@
 # Chat Application
 
-Live Chat Application made with Angular/Typescript/Express/Node.js/pgSQL
+Live Chat Application made with:
+
+Front: Angular, Typescript
+
+Back: Node.js, Express
+
+DB: pgSQL
+
+socket.io for live updates
 
 ## Getting started
 
 Open cmd and run:
 
- ``$git clone https://github.com/saifabusaleh/chat.git``
+ ``$ git clone https://github.com/saifabusaleh/chat.git``
 
-``$cd chat``
+``$ cd chat``
 
-``$npm install``
+``$ npm install``
 
 
 ## Images
@@ -25,3 +33,7 @@ Open cmd and run:
 <img src="images/4.png" alt="img4" height="400">
 
 <img src="images/5.png" alt="img5" height="400">
+
+## Isn't working as expected?
+
+Please create [an issue](https://github.com/saifabusaleh/chat/issues/new)
