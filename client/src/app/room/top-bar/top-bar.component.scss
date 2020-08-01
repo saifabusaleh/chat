@@ -1,5 +1,7 @@
+@import "variables.scss";
+
 .top-bar-container {
-    background: #4a4e56;
+    background-color: $bg;
     border-radius: 4px 4px 0 0;
     height: 60px;
     width: 100%;
