@@ -1,4 +1,4 @@
-# Chat Application
+# Live Chat Application
 
 Live Chat Application made with:
 
