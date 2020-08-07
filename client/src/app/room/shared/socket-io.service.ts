@@ -34,10 +34,10 @@ export class SocketIoService {
     this.socket.emit('sendMessage', message);
   }
 
-  public getMessagesObs(): Observable<ServerToClientChatMessage> {
+  public getMessagesObs(): Observable<ServerToClientChatMessage[]> {
     return new Observable((observer) => {
       this.socket.on('message', (message: ServerToClientChatMessage) => {
-        observer.next(message);
+        observer.next([message]);
       });
     });
   }

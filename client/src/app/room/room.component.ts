@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { concat, Subscription } from 'rxjs';
 import { HttpService, ServerToClientChatMessage } from '../shared/http.service';
 import { ClientToServerChatMessage, JoinRoomRequest, SocketIoService } from './shared/socket-io.service';
 
@@ -12,11 +12,10 @@ import { ClientToServerChatMessage, JoinRoomRequest, SocketIoService } from './s
 export class RoomComponent implements OnInit, OnDestroy {
 
   private roomId: number;
-  private getPrevMessagesSubscription: Subscription;
   private getMessagesObsSubscription: Subscription;
 
   roomName: string;
-  messages: ServerToClientChatMessage[];
+  messages: ServerToClientChatMessage[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -34,27 +33,21 @@ export class RoomComponent implements OnInit, OnDestroy {
 
 
     const msg: JoinRoomRequest = { username: JSON.parse(sessionStorage.getItem('user')).username, room: this.roomName };
-    this.getPrevMessagesSubscription = this.httpService.getPreviousMessages(this.roomId)
-      .subscribe((previousMessages: ServerToClientChatMessage[]) => {
-        this.messages = previousMessages;
-        this.socketIoService.joinRoom(msg);
-        this.getNewMessages();
+    this.socketIoService.joinRoom(msg);
+
+    this.getMessagesObsSubscription = concat(this.httpService.getPreviousMessages(this.roomId), this.socketIoService.getMessagesObs())
+      .subscribe((
+        newMessages: ServerToClientChatMessage[]) => {
+        this.messages.push(...newMessages);
       });
   }
 
   ngOnDestroy(): void {
-    this.getPrevMessagesSubscription.unsubscribe();
     this.getMessagesObsSubscription.unsubscribe();
   }
 
   onSendMessage(message: string): void {
     const messageObj: ClientToServerChatMessage = { roomId: this.roomId, personId: 1, text: message };
     this.socketIoService.sendMessage(messageObj);
-  }
-
-  getNewMessages(): void {
-    this.socketIoService.getMessagesObs().subscribe((newMsg: ServerToClientChatMessage) => {
-      this.messages = [...this.messages, newMsg];
-    });
   }
 }

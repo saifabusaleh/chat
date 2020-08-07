@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ServerToClientChatMessage } from '@components/shared/http.service';
 
 @Component({
@@ -6,14 +6,11 @@ import { ServerToClientChatMessage } from '@components/shared/http.service';
   templateUrl: './messages.component.html',
   styleUrls: ['./messages.component.scss']
 })
-export class MessagesComponent implements OnInit {
+export class MessagesComponent {
 
   constructor() { }
 
   @Input()
   messages: ServerToClientChatMessage[];
-
-  ngOnInit(): void {
-  }
 
 }
