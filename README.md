@@ -8,7 +8,10 @@ Back: Node.js, Express
 
 DB: pgSQL
 
-socket.io for live updates
+Socket.io for live updates
+
+For simplicity there is no validation on the join page
+
 
 ## Getting started
 
