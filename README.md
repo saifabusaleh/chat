@@ -10,7 +10,7 @@ DB: pgSQL
 
 Socket.io for live updates
 
-For simplicity there is no validation on the join page
+For simplicity there is no validation on the input
 
 
 ## Getting started
